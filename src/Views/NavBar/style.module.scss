@@ -1,0 +1,116 @@
+@import "../../Style/index.scss";
+
+.container {
+  @include h(100vh);
+  @include w(100vw);
+
+  display: flex;
+}
+
+.left {
+  @include h(100vh);
+  @include w(15vw);
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  position: sticky;
+  left: 0;
+  top: 0;
+
+  user-select: none;
+}
+
+.header {
+  @include flexCenter;
+
+  padding: $paddingMedium;
+
+  > img {
+    @include hw(2.5em);
+
+    margin-right: $paddingMedium;
+
+    cursor: pointer;
+    border-radius: $radius;
+    transition: all 0.5s;
+
+    &:hover {
+      @include hw(3em);
+      margin-right: $paddingTiny;
+    }
+  }
+}
+
+.mode-selector {
+  padding: $paddingTiny;
+  border-radius: $radius;
+
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  font-size: 1.5rem;
+
+  > span:first-child {
+    font-size: 1rem;
+  }
+}
+
+.nav-items > li {
+  transition: all 0.5s;
+
+  .nav-item {
+    padding: $paddingRetangular;
+
+    cursor: pointer;
+
+    > svg {
+      margin-right: $paddingMedium;
+    }
+  }
+}
+
+.footer {
+  padding: $paddingMedium;
+
+  @include flexArd;
+
+  > svg {
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+}
+
+.right {
+  @include h(100vh);
+  @include w(85vw);
+}
+
+[data-theme="light"] {
+  .right {
+    background-color: $background;
+  }
+
+  .nav-items > li {
+    &[data-active="false"] {
+      color: $gray;
+    }
+
+    &:hover, &[data-active="true"] {
+      color: $primary;
+    }
+  }
+
+  .mode-selector:hover > span:last-child {
+    color: $primary;
+  }
+
+  .footer > svg {
+    color: $gray;
+
+    &[data-new-notification="true"] {
+      color: $primary;
+    }
+  }
+}

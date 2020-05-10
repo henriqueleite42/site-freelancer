@@ -1,0 +1,20 @@
+// Abour Font
+// https://fonts.google.com/specimen/Montserrat?query=montserrat&sidebar.open&selection.family=Montserrat:wght@500;600;700;900
+
+@font-face {
+  font-family: "MontserratRegular";
+  src: url('../Assets/Fonts/Montserrat/Montserrat-Medium.ttf');
+}
+
+@font-face {
+  font-family: "MontserratBold";
+  src: url('../Assets/Fonts/Montserrat/Montserrat-Bold.ttf');
+}
+
+@mixin fontRegular {
+  font-family: MontserratRegular, sans-serif;
+}
+
+@mixin fontBold {
+  font-family: MontserratBold, sans-serif;
+}

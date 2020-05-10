@@ -1,0 +1,74 @@
+@import "../../Style/colors.scss";
+@import "../../Style/size.scss";
+@import "../../Style/style.scss";
+@import "../../Style/flex.scss";
+
+@mixin progress ($times, $qtd) {
+  &[data-progress="#{$times}"]:before, &[data-progress="#{$times}"]:after {
+    top: $qtd;
+  }
+}
+
+.container {
+  @include flexCenter;
+
+  &[data-mode="fill"] {
+    @include hw(100%);
+  }
+  &[data-mode="full"] {
+    @include h(100vh);
+    @include w(100vw);
+  }
+}
+
+.water{
+  width:400px;
+  height: 400px;
+  background-color: skyblue;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 0 30px 0 rgba(0,0,0,.5), 0 4px 10px 0 rgba(0,0,0,.5);
+  overflow: hidden;
+
+  @include progress (0, 0px);
+  @include progress (1, -45px);
+  @include progress (2, -90px);
+  @include progress (3, -135px);
+  @include progress (4, -180px);
+  @include progress (5, -225px);
+  @include progress (6, -270px);
+  @include progress (7, -315px);
+  @include progress (8, -360px);
+  @include progress (9, -405px);
+  @include progress (10, -450px);
+
+  &:before, &:after{
+    content:'';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: -200px;
+    background-color: #fff;
+  }
+
+  &:before{
+    border-radius: 45%;
+    background:rgba(255,255,255,.7);
+    animation:wave 5s linear infinite;
+  }
+
+  &:after{
+    border-radius: 35%;
+    background:rgba(255,255,255,.3);
+    animation:wave 5s linear infinite;
+  }
+}
+
+@keyframes wave{
+  0%{
+    transform: rotate(0);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}

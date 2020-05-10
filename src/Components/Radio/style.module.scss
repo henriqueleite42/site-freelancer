@@ -1,0 +1,27 @@
+@import "../../Style/colors.scss";
+@import "../../Style/style.scss";
+@import "../../Style/flex.scss";
+
+.container {
+  @include flexArd;
+
+  background-color: $background;
+  border-radius: $radius;
+  padding: $paddingTiny;
+
+  width: 100%;
+}
+
+.option {
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+
+[data-theme="light"] {
+  .option {
+    &:hover, &[data-selected="true"] {
+      color: $primary
+    }
+  }
+}

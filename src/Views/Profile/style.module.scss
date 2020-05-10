@@ -1,0 +1,64 @@
+@import "../../Style/size.scss";
+@import "../../Style/style.scss";
+@import "../../Style/colors.scss";
+
+.container {
+  gap: $paddingMedium;
+  padding: $paddingMedium;
+
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+
+  > div {
+    padding: $paddingMedium;
+    border-radius: $radius;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.1);
+    overflow: hidden;
+
+    background-color: white;
+
+    &:first-child {
+      grid-column-start: 1;
+      grid-column-end: 6;
+    }
+
+    &:last-child {
+      grid-column-start: 6;
+      grid-column-end: 10;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+  }
+}
+
+.profile-pic {
+  @include hw(12em);
+  border-radius: $radius;
+}
+
+.topic {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: $paddingTiny;
+}
+
+.history {
+  overflow-y: scroll;
+  height: 100%;
+  max-height: 70vh;
+
+  > div {
+    margin-bottom: $paddingTiny;
+  }
+  // &::-webkit-scrollbar-button       { /* 2 */ }
+  // &::-webkit-scrollbar-track        { /* 3 */ }
+  // &::-webkit-scrollbar-track-piece  { /* 4 */ }
+  // &::-webkit-scrollbar-thumb        { /* 5 */ }
+  // &::-webkit-scrollbar-corner       { /* 6 */ }
+  // &::-webkit-resizer                { /* 7 */ }
+}
+
+.history::-webkit-scrollbar {
+  width: 0;
+}

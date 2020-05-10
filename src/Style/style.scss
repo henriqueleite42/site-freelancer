@@ -1,0 +1,11 @@
+@import "./colors.scss";
+
+$paddingTiny: 1rem;
+$paddingMedium: 1em;
+$paddingRetangular: $paddingTiny $paddingMedium;
+
+$radius: 1em;
+
+$fontBig: 1.5em;
+
+$gradientLight: linear-gradient(to left, $secondary, $primary);
