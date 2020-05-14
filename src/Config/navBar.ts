@@ -4,7 +4,7 @@ import store from "Redux/store";
 
 import Routes from "Config/routes";
 
-import Language from "Constants/Language";
+import Nav from "Constants/Language/Nav";
 
 interface NavItemInterface {
   name: string;
@@ -16,7 +16,7 @@ interface NavItemInterface {
 
 const GlobalState = store.getState().state;
 const routes = Routes.getNamePath();
-const lang = Language[GlobalState.language].nav;
+const lang = Nav[GlobalState.language];
 
 const NavItems: Array<NavItemInterface> = [
   {

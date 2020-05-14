@@ -1,33 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 
-import HistoryItem from "./HistoryItem";
+import ProjectDone from "Components/ProjectDone";
 
 import { useGlobalState } from "Redux/state";
 
-import Language from "Constants/Language";
+import ProfileLang from "Constants/Language/Profile";
+
+import { Project } from "Interfaces/Project";
 
 import { profile } from "Assets/Images/index";
 
-import style from "./style.module.scss";
+import trueProjects from "Temp/projects";
 
-const historyItems = [{}, {}, {}, {}, {}, {}, {}];
+import style from "./style.module.scss";
 
 const Profile: React.FC = () => {
   const GlobalState = useGlobalState();
-  const lang = Language[GlobalState.language].profile;
+  const lang = ProfileLang[GlobalState.language];
+
+  const [projects, setProjects] = useState<Array<Project>>(trueProjects);
 
   return (
     <div className={style["container"]}>
-      <div>
+      <div className={style["left"]}>
         <img className={style["profile-pic"]} src={profile} alt="profile-pic" />
       </div>
-      <div>
-        <h1 className={style["topic"]}>{lang.history}</h1>
-        <div className={style["history"]}>
-          {historyItems.map((item, index) => (
-            <HistoryItem key={index} />
-          ))}
+      <div className={style["right"]}>
+        <div className={style["topic-title"]}>
+          <span>{lang.lastedProjects}</span>
         </div>
+        {projects.map((item, index) => (
+          <ProjectDone key={index} project={item} />
+        ))}
       </div>
     </div>
   );

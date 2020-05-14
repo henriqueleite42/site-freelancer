@@ -7,7 +7,7 @@ import { useGlobalState } from "Redux/state";
 
 import NavItems from "Config/navBar";
 
-import Language from "Constants/Language";
+import Nav from "Constants/Language/Nav";
 
 import { logo } from "Assets/Images";
 
@@ -18,7 +18,7 @@ const NavBar: React.FC = ({ children }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const GlobalState = useGlobalState();
-  const lang = Language[GlobalState.language].nav;
+  const lang = Nav[GlobalState.language];
 
   return (
     <div className={style["container"]}>
@@ -35,7 +35,7 @@ const NavBar: React.FC = ({ children }) => {
         </header>
         <ul className={style["nav-items"]}>
           {NavItems.map((navItem, index) => {
-            if (!navItem[GlobalState.mode]) return <></>;
+            if (!navItem[GlobalState.mode]) return;
 
             return (
               <li

@@ -1,0 +1,36 @@
+@import "../../../Style/index.scss";
+
+.container {
+  @include flexCenter;
+
+  background-color: $background;
+  border-radius: $radius;
+  font-size: $fontTiny;
+  padding: $paddingMini;
+
+  > span {
+    margin-left: $paddingTiny;
+  }
+
+  &[data-padding-svg="true"] > svg {
+    margin-right: 0.4rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+[data-theme="light"] {
+  .container > svg {
+    &[data-color="blue"] {
+      color: $secondary;
+    }
+    &[data-color="yellow"] {
+      color: $yellowLight;
+    }
+    &[data-color="green"] {
+      color: $greenLight;
+    }
+  }
+}

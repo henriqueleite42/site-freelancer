@@ -72,3 +72,8 @@
     transform: rotate(360deg);
   }
 }
+
+
+[data-theme="light"] .container[data-mode="full"] {
+  background-color: $background;
+}

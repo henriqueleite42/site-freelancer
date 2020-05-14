@@ -11,7 +11,12 @@ import {
   faStar,
   faClock,
   faAward,
-  faWrench
+  faWrench,
+  faDollarSign,
+  faStopwatch,
+  faCalendarAlt,
+  faQuestion,
+  faExclamationCircle
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -25,7 +30,12 @@ library.add(
   faStar,
   faClock,
   faAward,
-  faWrench
+  faWrench,
+  faDollarSign,
+  faStopwatch,
+  faCalendarAlt,
+  faQuestion,
+  faExclamationCircle
 );
 
 export default library;

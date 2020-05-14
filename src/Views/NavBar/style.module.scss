@@ -14,6 +14,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  box-shadow: inset -1px 0px 3px 2px rgba(0,0,0,0.1);
 
   position: sticky;
   left: 0;
@@ -28,18 +29,13 @@
   padding: $paddingMedium;
 
   > img {
-    @include hw(2.5em);
+    @include hw(3em);
 
-    margin-right: $paddingMedium;
+    margin-right: $paddingTiny;
 
     cursor: pointer;
     border-radius: $radius;
     transition: all 0.5s;
-
-    &:hover {
-      @include hw(3em);
-      margin-right: $paddingTiny;
-    }
   }
 }
 
@@ -59,11 +55,30 @@
 
 .nav-items > li {
   transition: all 0.5s;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover, &[data-active="true"] {
+    &::before {
+      content: " ";
+      border-radius: 0 $radius $radius 0;
+
+      position: absolute;
+      background-color: $primary;
+      width: .5rem;
+      height: 80%;
+    }
+
+    .nav-item {
+      padding-left: 2.5rem;
+    }
+  }
 
   .nav-item {
-    padding: $paddingRetangular;
-
-    cursor: pointer;
+    padding: $paddingMediumRetangular;
+    transition: padding .5s;
 
     > svg {
       margin-right: $paddingMedium;
@@ -102,8 +117,12 @@
     }
   }
 
-  .mode-selector:hover > span:last-child {
-    color: $primary;
+  .mode-selector {
+    color: $gray;
+
+    &:hover > span:last-child {
+      color: $primary;
+    }
   }
 
   .footer > svg {

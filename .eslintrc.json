@@ -36,6 +36,7 @@
           "/Constants/",
           "/Interfaces/",
           "/Assets/",
+          "/Temp/",
           "/style/"
         ],
         "alphabetize": {

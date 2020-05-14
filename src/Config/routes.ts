@@ -31,6 +31,11 @@ const ROUTES: Array<RouteInterface> = [
     path: "/profile",
     component: "Profile",
     navBar: true
+  },
+  {
+    name: "relax",
+    path: "/relax",
+    component: "Relax"
   }
 ];
 
