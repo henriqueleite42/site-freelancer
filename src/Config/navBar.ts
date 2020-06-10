@@ -15,7 +15,7 @@ interface NavItemInterface {
 }
 
 const GlobalState = store.getState().state;
-const routes = Routes.getNamePath();
+const routes = new Routes(GlobalState.language).getNamePath();
 const lang = Nav[GlobalState.language];
 
 const NavItems: Array<NavItemInterface> = [

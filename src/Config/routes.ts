@@ -1,73 +1,132 @@
+import RoutesLanguage from "Constants/Language/Routes";
+
 export interface RouteInterface {
-  name: string;
+  name: keyof typeof RoutesLanguage.EN;
   path: string;
+  component: string;
+  blocked?: boolean;
+  navBar?: boolean;
+  authOnly?: boolean;
+}
+
+interface RouteConfigInterface {
+  name: keyof typeof RoutesLanguage.EN;
   component: string;
   blocked?: boolean;
   authOnly?: boolean;
   navBar?: boolean;
 }
 
-const ROUTES: Array<RouteInterface> = [
+const ROUTES: Array<RouteConfigInterface> = [
   {
     name: "home",
-    path: "/",
     component: "Home",
     navBar: true
   },
   {
     name: "analytics",
-    path: "/analytics",
     component: "Analytics",
     navBar: true
   },
   {
     name: "messages",
-    path: "/messages",
     component: "Messages",
     navBar: true
   },
   {
     name: "profile",
-    path: "/profile",
     component: "Profile",
     navBar: true
   },
   {
     name: "relax",
-    path: "/relax",
     component: "Relax"
   }
 ];
 
 class Routes {
-  static getNamePath = () => {
-    const NamePath: { [key: string]: string } = {};
+  private Language: typeof RoutesLanguage.EN;
 
-    for (const route of ROUTES) {
-      NamePath[route.name] = route.path;
-    }
+  constructor(lang: keyof typeof RoutesLanguage) {
+    this.Language = RoutesLanguage[lang];
+  }
 
-    return NamePath;
+  public getNamePath = () => {
+    const NamePath: Partial<
+      { [T in keyof typeof RoutesLanguage.EN]: string }
+    > = {};
+
+    ROUTES.forEach(route => {
+      NamePath[route.name] = `/${this.Language[route.name]}`;
+    });
+
+    return NamePath as { [T in keyof typeof RoutesLanguage.EN]: string };
   };
 
-  static getNonAuth = () => {
+  public getNavBar = () => {
+    const NavBarRoutes: Array<RouteInterface> = [];
+
+    ROUTES.forEach(route => {
+      if (route.navBar) {
+        NavBarRoutes.push({
+          ...route,
+          path: `/${this.Language[route.name]}`
+        });
+      }
+    });
+
+    return NavBarRoutes;
+  };
+
+  public getNonAuth = () => {
     const NonAuthRoutes: Array<RouteInterface> = [];
 
-    for (const route of ROUTES) {
-      if (!route.authOnly) NonAuthRoutes.push(route);
-    }
+    ROUTES.forEach(route => {
+      if (!route.authOnly) {
+        NonAuthRoutes.push({
+          ...route,
+          path: `/${this.Language[route.name]}`
+        });
+      }
+    });
 
     return NonAuthRoutes;
   };
 
-  static getAuth = () => {
+  public getAuth = () => {
     const AuthRoutes: Array<RouteInterface> = [];
 
-    for (const route of ROUTES) {
-      if (route.authOnly) AuthRoutes.push(route);
-    }
+    ROUTES.forEach(route => {
+      if (route.authOnly) {
+        AuthRoutes.push({
+          ...route,
+          path: `/${this.Language[route.name]}`
+        });
+      }
+    });
 
     return AuthRoutes;
+  };
+
+  public getAuthNonAuth = () => {
+    const AuthRoutes: Array<RouteInterface> = [];
+    const NonAuthRoutes: Array<RouteInterface> = [];
+
+    ROUTES.forEach(route => {
+      if (route.authOnly) {
+        AuthRoutes.push({
+          ...route,
+          path: `/${this.Language[route.name]}`
+        });
+      } else {
+        NonAuthRoutes.push({
+          ...route,
+          path: `/${this.Language[route.name]}`
+        });
+      }
+    });
+
+    return [AuthRoutes, NonAuthRoutes];
   };
 }
 

@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 import InfoItem from "./InfoItem";
@@ -14,83 +13,68 @@ import { Project } from "Interfaces/Project";
 import style from "./style.module.scss";
 
 export interface ProjectDoneInterface {
-  project: Project;
+  project?: Project;
 }
 
 const ProjectDone: React.FC<ProjectDoneInterface> = ({ project }) => {
   const GlobalState = useGlobalState();
   const lang = ProjectLang[GlobalState.language];
 
-  const getSkills = () => {
-    const result = [];
-
-    while (result.length < 3 && project.skills[result.length]) {
-      result.push(
-        <span key={result.length}>{project.skills[result.length]}</span>
-      );
-    }
-
-    if (result.length < project.skills.length) {
-      result.push(
-        <span data-bold="true" key={result.length}>{`+ ${project.skills.length -
-          result.length}`}</span>
-      );
-    }
-
-    return result;
-  };
-
   const calcCost = (price: number): 1 | 2 | 3 | 4 | 5 => {
     return 3;
   };
 
   const getHeader = () => {
+    if (!project) return <InfoItem />;
+
     if (!project.private) {
       return <p className={style["title"]}>{project.title}</p>;
     }
 
-    return (
-      <div className={style["private-project"]}>
-        <FontAwesomeIcon icon="exclamation-circle" />
-        <span>{lang.private}</span>
-      </div>
-    );
+    return <span className={style["private-project"]}>{lang.private}</span>;
   };
 
   return (
     <div className={style["container"]}>
       {getHeader()}
       <InfoItem
-        icon="calendar-alt"
+        icon={project ? "calendar-alt" : undefined}
         svgColor="blue"
-        label={formattedDiff(
-          project.dateStart,
-          project.dateEnd as Date,
-          GlobalState.language
-        )}
+        label={
+          project
+            ? formattedDiff(
+                project.dateStart,
+                project.dateEnd as Date,
+                GlobalState.language
+              )
+            : undefined
+        }
       />
       <InfoItem
-        icon="star"
+        icon={project ? "star" : undefined}
         svgColor="yellow"
         isRating={true}
-        iconRepeat={project.stars}
+        iconRepeat={project ? project.stars : undefined}
       />
       <InfoItem
-        icon="dollar-sign"
+        icon={project ? "dollar-sign" : undefined}
         svgColor="green"
         isRating={true}
         svgPadding={true}
-        iconRepeat={calcCost(project.price)}
+        iconRepeat={project ? calcCost(project.price) : undefined}
       />
       <p
-        data-withOutComment={project.employerComment?.length < 1}
+        data-withOutComment={
+          project ? project.employerComment?.length < 1 : false
+        }
         className={style["comment"]}
       >
-        {project.employerComment?.length > 0
-          ? project.employerComment
-          : lang.withOutComment}
+        {project
+          ? project.employerComment?.length > 0
+            ? project.employerComment
+            : lang.withOutComment
+          : undefined}
       </p>
-      <div className={style["skills"]}>{getSkills()}</div>
     </div>
   );
 };

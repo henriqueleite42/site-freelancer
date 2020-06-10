@@ -16,7 +16,10 @@ import {
   faStopwatch,
   faCalendarAlt,
   faQuestion,
-  faExclamationCircle
+  faExclamationCircle,
+  faEdit,
+  faBowlingBall,
+  faPaperPlane
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -35,7 +38,10 @@ library.add(
   faStopwatch,
   faCalendarAlt,
   faQuestion,
-  faExclamationCircle
+  faExclamationCircle,
+  faEdit,
+  faBowlingBall,
+  faPaperPlane
 );
 
 export default library;

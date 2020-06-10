@@ -16,7 +16,7 @@ interface Profile {
     receivable: NickName;
   };
   jobs: NickName;
-  lastedProjects: string;
+  recentProjects: string;
 }
 
 const EN: Profile = {
@@ -39,7 +39,7 @@ const EN: Profile = {
     short: "Jobs",
     complete: "Total Jobs Done"
   },
-  lastedProjects: "Lasted Jobs"
+  recentProjects: "Recent Projects"
 };
 
 const BR: Profile = {
@@ -62,7 +62,7 @@ const BR: Profile = {
     short: "Projetos",
     complete: "Total de Projetos Concluidos"
   },
-  lastedProjects: "Ultimos Projetos"
+  recentProjects: "Projetos Recentes"
 };
 
 const Profile: { [T in keyof typeof AllLangs]: Profile } = {

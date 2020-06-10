@@ -1,9 +1,11 @@
 import { createStore, combineReducers } from "redux";
 
 import { stateReducer } from "./state";
+import { userReducer } from "./user";
 
 const reducers = {
-  state: stateReducer
+  state: stateReducer,
+  user: userReducer
 };
 
 export type AppState = {

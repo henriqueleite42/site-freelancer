@@ -5,16 +5,17 @@
 }
 
 .left {
-  @include w(50vw);
-
-  padding: $paddingTiny;
-}
-
-.right {
   @include w(35vw);
   @include h(100vh);
 }
-@include hideScroll(right);
+@include hideScroll(left);
+
+.right {
+  @include w(50vw);
+
+  padding: $paddingTiny;
+  padding-left: $paddingMini;
+}
 
 .topic-title {
   @include fontBold;
@@ -26,13 +27,12 @@
   text-align: center;
 }
 
-.profile-pic {
-  @include hw(12em);
-  border-radius: $radius;
-}
-
 [data-theme="light"] {
   .container > div {
     color: $gray;
+  }
+
+  .profile-pic > svg {
+    color: white;
   }
 }

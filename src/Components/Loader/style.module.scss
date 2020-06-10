@@ -1,7 +1,4 @@
-@import "../../Style/colors.scss";
-@import "../../Style/size.scss";
-@import "../../Style/style.scss";
-@import "../../Style/flex.scss";
+@import "../../Style";
 
 @mixin progress ($times, $qtd) {
   &[data-progress="#{$times}"]:before, &[data-progress="#{$times}"]:after {
@@ -11,6 +8,7 @@
 
 .container {
   @include flexCenter;
+  user-select: none;
 
   &[data-mode="fill"] {
     @include hw(100%);
@@ -19,35 +17,70 @@
     @include h(100vh);
     @include w(100vw);
   }
+
+  &[data-size="micro"] {
+    .water {
+      width: 3.5em;
+      height: 3.5em;
+      // box-shadow: inset 0 0 10px 0 rgba(0,0,0,.3), 0 1px 4px 0 rgba(0,0,0,.3);
+    }
+  }
+
+  &[data-size="mini"] {
+    .water {
+      width: 100px;
+      height: 100px;
+      // box-shadow: inset 0 0 10px 0 rgba(0,0,0,.3), 0 1px 4px 0 rgba(0,0,0,.3);
+    }
+  }
+  &[data-size="tiny"] {
+    .water {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  &[data-size="medium"] {
+    .water {
+      width: 400px;
+      height: 400px;
+      box-shadow: inset 0 0 30px 0 rgba(0,0,0,.5), 0 4px 10px 0 rgba(0,0,0,.5);
+    }
+  }
+}
+
+.label {
+  @include fontBold;
+
+  font-size: 1.5em;
+  position: absolute;
+  z-index: 10;
 }
 
 .water{
-  width:400px;
-  height: 400px;
+  @include flexCenter;
+  @include progress (0, 0%);
+  @include progress (1, -10%);
+  @include progress (2, -20%);
+  @include progress (3, -30%);
+  @include progress (4, -40%);
+  @include progress (5, -50%);
+  @include progress (6, -60%);
+  @include progress (7, -70%);
+  @include progress (8, -80%);
+  @include progress (9, -90%);
+  @include progress (10, -100%);
+
   background-color: skyblue;
   border-radius: 50%;
   position: relative;
-  box-shadow: inset 0 0 30px 0 rgba(0,0,0,.5), 0 4px 10px 0 rgba(0,0,0,.5);
   overflow: hidden;
-
-  @include progress (0, 0px);
-  @include progress (1, -45px);
-  @include progress (2, -90px);
-  @include progress (3, -135px);
-  @include progress (4, -180px);
-  @include progress (5, -225px);
-  @include progress (6, -270px);
-  @include progress (7, -315px);
-  @include progress (8, -360px);
-  @include progress (9, -405px);
-  @include progress (10, -450px);
 
   &:before, &:after{
     content:'';
+    width: 100%;
+    height: 100%;
+    top: -50%;
     position: absolute;
-    width: 400px;
-    height: 400px;
-    top: -200px;
     background-color: #fff;
   }
 
@@ -74,6 +107,12 @@
 }
 
 
-[data-theme="light"] .container[data-mode="full"] {
-  background-color: $background;
+[data-theme="light"] {
+  .container[data-mode="full"] {
+    background-color: $background;
+  }
+
+  .label {
+    color: $primary;
+  }
 }

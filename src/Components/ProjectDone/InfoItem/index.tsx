@@ -5,7 +5,7 @@ import React from "react";
 import style from "./style.module.scss";
 
 export interface InfoItemInterface {
-  icon: IconProp;
+  icon?: IconProp;
   label?: string;
   isRating?: boolean;
   iconRepeat?: number;
@@ -22,6 +22,8 @@ const InfoItem: React.FC<InfoItemInterface> = ({
   isRating
 }) => {
   const getIcons = () => {
+    if (!icon) return <></>;
+
     if (!iconRepeat) {
       return <FontAwesomeIcon data-color={svgColor} icon={icon} />;
     }

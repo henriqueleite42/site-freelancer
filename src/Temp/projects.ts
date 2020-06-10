@@ -53,21 +53,6 @@ const projects: Array<Project> = [
     private: true,
     category: "Design",
     skills: ["HTML", "CSS"]
-  },
-  {
-    title: "Banner para redes sociais e layout de embalagem de caixa",
-    description: "ahahahahahahah",
-    price: 500.0,
-    currency: "USD",
-    dateStart: new Date(2020, 2, 10),
-    dateEnd: new Date(2020, 3, 15),
-    stars: 1,
-    employerId: "sadasd",
-    employerComment:
-      "Very Good!\n\nCriar Layout de Site com estilo Hi-tech semelhante Design de Game\nCriar Layout de Site com estilo Hi-tech semelhante Design de Game",
-    private: true,
-    category: "Design",
-    skills: ["HTML", "CSS"]
   }
 ];
 

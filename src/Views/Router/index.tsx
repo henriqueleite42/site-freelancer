@@ -13,12 +13,15 @@ import Routes from "Config/routes";
 const Router: React.FC = () => {
   const GlobalState = useGlobalState();
 
+  const routes = new Routes(GlobalState.language);
+  const [Auth, NonAuth] = routes.getAuthNonAuth();
+
   return (
     <Suspense fallback={<Loader mode="full" />}>
       <div data-theme={GlobalState.theme}>
         <BrowserRouter>
           <Switch>
-            {Routes.getNonAuth().map((route, index) => (
+            {NonAuth.map((route, index) => (
               <Route
                 exact
                 key={index}
@@ -27,7 +30,7 @@ const Router: React.FC = () => {
               />
             ))}
             <AuthOnlyRoutes>
-              {Routes.getAuth().map((route, index) => (
+              {Auth.map((route, index) => (
                 <Route
                   exact
                   key={index}

@@ -1,0 +1,68 @@
+@import "../../Style";
+
+.container {
+  display: flex;
+}
+
+.left {
+  @include w(20vw);
+  @include h(100vh);
+}
+
+.right {
+  @include w(65vw);
+  @include h(100vh);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-conteiner {
+  @include h(93vh);
+
+  width: 100%;
+}
+
+.input-container {
+  @include h(7vh);
+
+  > form {
+    @include flexBet;
+
+    height: 100%;
+
+    > div {
+      &:first-child {
+        width: 95%;
+      }
+      &:last-child {
+        @include flexCenter;
+        @include hw(1.8em);
+
+        margin-right: $paddingMini;
+
+        border-radius: 50%;
+        cursor: pointer;
+
+        > svg {
+          font-size: .8em;
+          margin-left: -.1rem;
+        }
+      }
+    }
+  }
+}
+
+[data-theme="light"] {
+  .input-container > form > div:last-child {
+    background-color: $primary;
+
+    &:hover {
+      background-color: $primaryDark;
+    }
+
+    > svg {
+      color: white;
+    }
+  }
+}
